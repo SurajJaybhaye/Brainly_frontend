@@ -11,32 +11,50 @@ enum ContentType {
   Twitter = "twitter",
 }
 
+type CreateContentModalProps = {
+  open: boolean;
+  onClose?: () => void;
+};
+
 // controlled component
-export function CreateContentModal({ open, onClose }) {
-  const titleRef = useRef<HTMLInputElement>();
-  const linkRef = useRef<HTMLInputElement>();
+export function CreateContentModal(props: CreateContentModalProps) {
+  const { open, onClose } = props;
+  const titleRef = useRef<HTMLInputElement | null>(null);
+  const linkRef = useRef<HTMLInputElement | null>(null);
   const [type, setType] = useState(ContentType.Youtube);
+  const [loading, setLoading] = useState(false);
 
   async function addContent() {
     const title = titleRef.current?.value;
     const link = linkRef.current?.value;
 
-    await axios.post(
-      `${BACKEND_URL}/api/v1/content`,
-      {
-        link,
-        title,
-        type,
-      },
-      {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      }
-    );
+     if (!link) {
+      alert("Please provide a link");
+      return;
+    }
 
-    onClose();
+    setLoading(true);
+    try {
+      await axios.post(
+        `${BACKEND_URL}/api/v1/content`,
+        { link, title, type },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token") || "",
+          },
+        }
+      );
+      // close modal if callback provided
+      if (onClose) onClose();
+    } catch (err) {
+      console.error("Add content failed", err);
+      alert("Failed to add content");
+    } finally {
+      setLoading(false);
+    }
   }
+
+  if (!open) return null;
 
   return (
     <div>
@@ -84,7 +102,7 @@ export function CreateContentModal({ open, onClose }) {
                       addContent();
                     }}
                     variant="primary"
-                    text="Submit"
+                    text={loading ? "Submitting..." : "Submit"}
                   />
                 </div>
               </span>
