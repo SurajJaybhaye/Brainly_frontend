@@ -26,14 +26,14 @@ export function Dashboard() {
   return (
     <div>
       <Sidebar />
-      <div className="p-4 ml-72 min-h-screen bg-gray-100 border">
+      <div className="p-4 ml-90 min-h-screen bg-gray-100 ">
         <CreateContentModal
           open={modalOpen}
           onClose={() => {
             setModalOpen(false);
           }}
         />
-        <div className="flex justify-end gap-4">
+        <div className="flex justify-end gap-8 pr-4">
           <Button
             onClick={() => {
               setModalOpen(true);

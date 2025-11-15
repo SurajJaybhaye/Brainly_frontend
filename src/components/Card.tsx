@@ -31,14 +31,17 @@ export function Card({id,title,link,type, onDelete}: CardProps){
   }
 
     return <div>
-    <div className="p-4 bg-white rounded-md shadow-md border-gray-200 w-72 max-h-96 overflow-y-auto overflow-x-hidden border">
+    <div className="p-4 shadow-2xl bg-white rounded-md shadow-md border-gray-200 w-90 max-h-96 overflow-y-auto overflow-x-hidden border">
         <div className="justify-between flex ">
             <div className="flex items-center text-sm">
                 <div className="text-gray-500 pr-2">
                     {type == "youtube" && <YoutubeIcon />}
                     {type == "twitter" && <TwitterIcon />}
                 </div>
-                {title}
+                <div> 
+                    {title}
+                </div>
+                
             </div>
             <div className="flex items-center">
                 

@@ -3,31 +3,36 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 
-type ContentType = "twitter" | "youtube";
+export function useContent(type?: "twitter" | "youtube") {
+  const [contents, setContents] = useState([]);
 
-export function useContent(typeFilter?: ContentType | "") {
-  const [contents, setContents] = useState<any[]>([]);
+  function refresh() {
+    const token = localStorage.getItem("token");
 
-  async function refresh() {
-    try {
-      // Build URL with optional query param
-      const url = `${BACKEND_URL}/api/v1/content` + (typeFilter ? `?type=${typeFilter}` : "");
-      console.log("useContent fetching:", url); // <- debug log
-      const resp = await axios.get(url, {
-        headers: { Authorization: localStorage.getItem("token") },
-      });
-      setContents(resp.data.content || []);
-    } catch (err) {
-      console.error("Failed to fetch contents", err);
+    // choose URL based on type
+    const url = type
+      ? `${BACKEND_URL}/api/v1/content/${type}`     // /content/twitter OR /content/youtube
+      : `${BACKEND_URL}/api/v1/content`;           // fallback: all content
+
+    axios.get(url, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((response) => {
+      setContents(response.data.content || []);
+    })
+    .catch((e) => {
+      console.error("useContent error:", e);
       setContents([]);
-    }
+    });
   }
 
   useEffect(() => {
     refresh();
-    const interval = setInterval(refresh, 10000);
+    const interval = setInterval(() => refresh(), 10_000);
     return () => clearInterval(interval);
-  }, [typeFilter]); // re-run when filter changes
+  }, [type]); // refresh when type changes
 
   return { contents, refresh };
 }

@@ -5,6 +5,7 @@ import { Dashboard } from "./pages/Dashboard"
 import { Hero } from "./pages/Hero"
 import { Twitter } from "./pages/Twitter"
 import { Youtube } from "./pages/Youtube"
+import { Share } from "./pages/Share"
 function App() {
   return <BrowserRouter>
     <Routes>
@@ -14,6 +15,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/twitter" element={<Twitter />} />
       <Route path="/dashboard/youtube" element={<Youtube />} />
+      <Route path="/share/:sharelink" element={<Share />} />
     </Routes>
   </BrowserRouter>
 }
