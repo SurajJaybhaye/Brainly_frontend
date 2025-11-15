@@ -85,10 +85,10 @@ export function Share() {
             <Card
               key={c._id}
               id={c._id}
-              type={c.type}
-              link={c.link}
-              title={c.title}
-              tags={c.tags}
+              type={c.type as "twitter" | "youtube"}
+                link={c.link!}
+                title={c.title ?? ""}
+              
             />
           ))}
         </div>
