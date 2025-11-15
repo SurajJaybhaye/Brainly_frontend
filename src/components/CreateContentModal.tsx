@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import  { useRef, useState } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
-
+//@ts-expect-errorenum
 enum ContentType {
   Youtube = "youtube",
   Twitter = "twitter",
@@ -107,4 +107,3 @@ export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
   );
 }
 
-export default CreateContentModal;

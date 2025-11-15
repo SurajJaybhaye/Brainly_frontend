@@ -1,5 +1,4 @@
-// src/pages/Youtube.tsx
-import React from "react";
+
 import { Sidebar } from "../components/Sidebar";
 import { Card } from "../components/Card";
 import { useContent } from "../hooks/useContent";

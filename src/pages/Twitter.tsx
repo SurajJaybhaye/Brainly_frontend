@@ -1,5 +1,5 @@
 // src/pages/Twitter.tsx
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { Card } from "../components/Card";
 import { useContent } from "../hooks/useContent";
