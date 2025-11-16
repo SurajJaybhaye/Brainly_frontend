@@ -55,7 +55,8 @@ export function Dashboard() {
                   },
                 }
               );
-              const shareUrl = `https://brainly-frontend-ar1j.vercel.app/share/${response.data.hash}`;
+              const hash = await response.data.hash;
+              const shareUrl = `https://brainly-frontend-ar1j.vercel.app/share/${hash}`;
               alert(shareUrl);
             }}
             variant="secondary"
