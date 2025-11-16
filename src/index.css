@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+:root {
+  /* force a stable rem baseline */
+  font-size: 16px; /* change only if you intentionally want a different base */
+  /* you can expose a scale if you want later, e.g. --root: 16px; */
+}
+
+/* prevent mobile browsers from enlarging text */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+/* consistent box-sizing everywhere */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* ensure body/layout doesn't get unexpected scaling */
+body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-transform: none; /* override inline UA style if any */
+  transform: none;
+  -webkit-zoom: 1;
+  zoom: 1;
+}
