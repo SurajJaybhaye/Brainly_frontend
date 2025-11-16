@@ -12,7 +12,7 @@ export function Sidebar() {
     navigate(path);
   };
   return (
-    <div className="h-screen bg-white w-90 fixed left-0 top-0 pl-6">
+    <div className="h-screen bg-white w-72 fixed left-0 top-0 pl-6">
       <div
         onClick={handleClick}
         className="flex text-2xl pt-8 items-center cursor-pointer"

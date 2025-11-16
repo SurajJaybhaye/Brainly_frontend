@@ -17,7 +17,7 @@ export function Twitter() {
   return (
     <div>
       <Sidebar />
-      <div className="p-4 ml-90 min-h-screen bg-gray-100">
+      <div className="p-4 ml-72 min-h-screen bg-gray-100">
         <h1 className="text-xl font-semibold mb-4">Twitter</h1>
 
         <div className="flex gap-4 m-4 flex-wrap">
