@@ -12,20 +12,20 @@ export function Sidebar() {
     navigate(path);
   };
   return (
-    <div className="h-screen bg-white w-90 fixed left-0 top-0 pl-6">
+    <div className="h-screen bg-white w-72 fixed left-0 top-0 pl-6">
       <div
         onClick={handleClick}
         className="flex text-2xl pt-8 items-center cursor-pointer"
       >
-        <div className="pr-2 text-purple-600">
+        <div className="pr-2 text-purple-400">
           <Logo />
         </div>
-        <div className="font-sans text-4xl font-bold">BRAINLY</div>
+        <div className="font-sans text-3xl font-bold">BRAINLY</div>
       </div>
-      <div className="pt-8 w-full pl-13">
+      <div className="pt-8 w-full pl-8">
         <SidebarItem text="Twitter" icon={<TwitterIcon />} />
         <SidebarItem text="Youtube" icon={<YoutubeIcon />} />
-        <div className="fixed bottom-10 left-30">
+        <div className="fixed bottom-10 left-20">
           <LogoutButton />
         </div>
       </div>
